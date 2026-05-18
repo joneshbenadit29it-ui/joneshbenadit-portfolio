@@ -1,355 +1,469 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jonesh Benadit J. | Portfolio</title>
-    <style>
-        :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --text-color: #c9d1d9;
-            --text-bright: #f0f6fc;
-            --accent-color: #58a6ff;
-            --border-color: #30363d;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 2rem 1rem;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Profile Header Header Layout */
-        header {
-            margin-bottom: 3rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 2rem;
-            display: flex;
-            flex-direction: column-reverse;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 600px) {
-            header {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
+    <title>Jonesh Benadit J. | Professional Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#0f172a',
+                            card: 'rgba(30, 41, 59, 0.7)',
+                            accent: '#38bdf8',
+                            glow: 'rgba(56, 189, 248, 0.15)'
+                        }
+                    }
+                }
             }
-            .header-text { flex: 1; }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom Cursor Glow Tracker */
+        .cursor-glow {
+            position: fixed;
+            pointer-events: none;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            display: none;
+        }
+        @media (min-width: 1024px) { .cursor-glow { display: block; } }
+
+        /* Smooth Glassmorphism */
+        .glass {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        /* Tech Grid Pattern */
+        .tech-grid {
+            background-image: linear-gradient(rgba(56, 189, 248, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(56, 189, 248, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 2px solid var(--border-color);
-            object-fit: cover;
-            background-color: var(--card-bg);
+        /* Typing cursor styling */
+        .typing::after {
+            content: '|';
+            animation: blink 1s infinite;
         }
-
-        h1 {
-            color: var(--text-bright);
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        .links {
-            margin-top: 1.2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            border-bottom: 1px dashed var(--text-color);
-        }
-
-        .links a:hover {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
-        }
-
-        section {
-            margin-bottom: 3rem;
-        }
-
-        h2 {
-            color: var(--text-bright);
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 0.75rem;
-        }
-
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-category h3 {
-            color: var(--text-bright);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 0.3rem 0.7rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-        }
-
-        /* Cards with Project Banner Support */
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-        }
-
-        .card-banner {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--border-color);
-            background-color: #1f242c;
-        }
-
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-title {
-            color: var(--text-bright);
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .card-meta {
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            font-family: monospace;
-        }
-
-        .card-desc {
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .card-links a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .card-links a:hover {
-            text-decoration: underline;
-        }
-
-        .bullet-list {
-            list-style: none;
-        }
-
-        .list-item {
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.95rem;
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .card-header { flex-direction: column; }
-        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     </style>
 </head>
-<body>
+<body class="bg-[#0f172a] text-slate-100 transition-colors duration-300 dark:bg-[#0f172a] dark:text-slate-100 light:bg-slate-50 light:text-slate-900 tech-grid">
 
-    <div class="container">
-        <!-- Header with Avatar Slot -->
-        <header>
-            <div class="header-text">
-                <h1>Jonesh Benadit J.</h1>
-                <div class="subtitle">Information Technology Student & Developer</div>
-                <p>Passionate about building smart embedded systems, precision IoT architectures, and data-driven software solutions.</p>
-                <div class="links">
-                    <a href="https://linkedin.com/in/jonesh-benadit-j-837b98378" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/joneshbenadit29it-ui" target="_blank">GitHub</a>
-                    <a href="mailto:joneshbenadit@gmail.com">Personal Email</a>
-                    <a href="mailto:joneshbenadit.29it@licet.ac.in">Institutional Email</a>
+    <!-- Mouse Glow Effect -->
+    <div class="cursor-glow" id="mouseGlow"></div>
+
+    <!-- 1. NAVIGATION BAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass border-b border-slate-800 dark:border-slate-800 light:border-slate-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white to-sky-400">JOREX.DEV</a>
+            
+            <div class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="#" class="hover:text-sky-400 transition-colors">Home</a>
+                <a href="#about" class="hover:text-sky-400 transition-colors">About</a>
+                <a href="#skills" class="hover:text-sky-400 transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-sky-400 transition-colors">Projects</a>
+                <a href="#experience" class="hover:text-sky-400 transition-colors">Experience</a>
+                <a href="#contact" class="hover:text-sky-400 transition-colors">Contact</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <!-- Theme Controller Toggle Button -->
+                <button id="themeToggle" class="p-2.5 rounded-full bg-slate-800 border border-slate-700 hover:border-sky-400 text-sky-400 transition-all">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:block"></i>
+                </button>
+                <a href="#contact" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white font-medium hover:shadow-[0_0_15px_rgba(56,189,248,0.4)] transition-all transform hover:-translate-y-0.5">Hire Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Ambient Floating Orbs Background -->
+    <div class="absolute top-20 left-10 w-96 height-96 bg-sky-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
+    <div class="absolute top-[60vh] right-10 w-96 height-96 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse" style="animation-delay: 3s"></div>
+
+    <!-- 2. HERO SECTION -->
+    <header class="min-h-screen flex items-center justify-center pt-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 w-full items-center">
+            
+            <!-- Hero Text Layout Left -->
+            <div class="lg:col-span-7 space-y-6 text-left">
+                <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-semibold tracking-wide">
+                    <i class="fa-solid fa-circle-dot text-[8px] animate-ping"></i>
+                    <span>Available for Opportunities</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">
+                    Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-400">Jonesh Benadit J.</span>
+                </h1>
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-400">
+                    I am a <span id="typingText" class="text-sky-400 typing"></span>
+                </h3>
+                <p class="text-slate-400 max-w-xl text-lg leading-relaxed">
+                    An Information Technology student specializing in writing secure core logic, building smart predictive data workflows, and developing integrated embedded hardware architecture systems.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white font-semibold hover:shadow-[0_0_25px_rgba(56,189,248,0.4)] transition-all transform hover:-translate-y-1">View My Work <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    <a href="#" class="px-6 py-3.5 rounded-xl bg-slate-800 border border-slate-700 hover:border-sky-400 text-slate-200 font-semibold transition-all transform hover:-translate-y-1 flex items-center gap-2">
+                        <i class="fa-solid fa-download text-sky-400"></i> Download Resume
+                    </a>
                 </div>
             </div>
-            <!-- Replace 'avatar.jpg' with your photo link later -->
-            <img class="profile-img" src="avatar.jpg" alt="Jonesh Benadit J.">
-        </header>
 
-        <!-- Education -->
-        <section id="education">
-            <h2>Education</h2>
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-header">
-                        <div class="card-title">Loyola-ICAM College of Engineering and Technology (LICET)</div>
-                        <div class="card-meta">2025 — 2029 (Expected)</div>
-                    </div>
-                    <div class="subtitle" style="font-size: 1rem; margin-bottom: 0.5rem;">B.Tech in Information Technology</div>
-                    <p class="card-desc">Focusing on modern computing principles, foundational software architectures, database logic, and hardware-software integration methodologies.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Technical Skills -->
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <div class="skill-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">C</span>
-                        <span class="tag">C++</span>
-                        <span class="tag">TypeScript</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Libraries & Frameworks</h3>
-                    <div class="skill-tags">
-                        <span class="tag">Pandas</span>
-                        <span class="tag">NumPy</span>
-                        <span class="tag">Matplotlib</span>
-                        <span class="tag">Playwright</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools & Hardware</h3>
-                    <div class="skill-tags">
-                        <span class="tag">ESP32 & Sensors</span>
-                        <span class="tag">Git & GitHub</span>
-                        <span class="tag">Azure Fundamentals</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Projects with Image Banners -->
-        <section id="projects">
-            <h2>Featured Projects</h2>
-
-            <!-- Project 1 -->
-            <div class="card">
-                <!-- Replace 'pipeline.jpg' with your image url -->
-                <img class="card-banner" src="pipeline.jpg" alt="Smart Pipeline">
-                <div class="card-content">
-                    <div class="card-header">
-                        <div class="card-title">Smart Pipeline Monitoring System</div>
-                        <div class="card-meta">ESP32, Flow Sensors, IoT Architecture</div>
-                    </div>
-                    <p class="card-desc">"Where Protection Meets Precision." Developed a smart pipeline grid using an ESP32 micro-controller and precise flow sensors to track liquid transit, calculate flow differentials, and instantly alert users to pipe leaks and resource waste.</p>
-                    <div class="card-links">
-                        <a href="#" target="_blank">View Repository →</a>
+            <!-- Profile Frame Avatar Image Right -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative group">
+                    <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 blur opacity-40 group-hover:opacity-70 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-slate-900/50 shadow-2xl bg-slate-800">
+                        <img src="avatar.jpg" alt="Jonesh Benadit J." class="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-500">
                     </div>
                 </div>
             </div>
 
-            <!-- Project 2 -->
-            <div class="card">
-                <!-- Replace 'ai-web.jpg' with your image url -->
-                <img class="card-banner" src="ai-web.jpg" alt="JOREX AI">
-                <div class="card-content">
-                    <div class="card-header">
-                        <div class="card-title">JOREX AI</div>
-                        <div class="card-meta">AI Integration, Web Development, GitHub Pages</div>
+        </div>
+    </header>
+
+    <!-- 3. ABOUT ME TIMELINE SECTION -->
+    <section id="about" class="py-28 px-6 max-w-7xl mx-auto border-t border-slate-800/60">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl font-bold tracking-tight mb-4 inline-block relative">
+                About My Journey
+                <span class="absolute bottom-0 left-1/4 right-1/4 h-[3px] bg-sky-500 rounded-full"></span>
+            </h2>
+            <p class="text-slate-400">Combining analytical computational theory with real-world IoT and software applications.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h3 class="text-2xl font-bold text-sky-400">Education & Ambition</h3>
+                <p class="text-slate-400 leading-relaxed">
+                    Currently pursuing a Bachelor's Degree in Information Technology, focusing deeply on systemic problem solving through clean architectural software design. I bridge hardware engineering logic with abstract framework engineering to build complete automation software.
+                </p>
+                <div class="p-5 rounded-2xl bg-slate-800/40 glass border border-slate-800">
+                    <h4 class="font-bold text-white mb-2"><i class="fa-solid fa-graduation-cap text-sky-400 mr-2"></i> Loyola-ICAM College of Engineering & Technology (LICET)</h4>
+                    <p class="text-sm text-slate-400">B.Tech in Information Technology • Expected Graduation: 2029</p>
+                </div>
+            </div>
+            
+            <!-- Quick Micro Achievements Metric Counter Block -->
+            <div class="grid grid-cols-2 gap-6">
+                <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-800 text-center hover:border-sky-500/40 transition-all">
+                    <i class="fa-solid fa-code text-3xl text-sky-400 mb-3"></i>
+                    <div class="text-3xl font-extrabold mb-1">4+</div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-slate-500">Core Languages</div>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-800 text-center hover:border-sky-500/40 transition-all">
+                    <i class="fa-solid fa-layer-group text-3xl text-indigo-400 mb-3"></i>
+                    <div class="text-3xl font-extrabold mb-1">3+</div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-slate-500">Major Initiatives</div>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-800 text-center hover:border-sky-500/40 transition-all">
+                    <i class="fa-solid fa-certificate text-3xl text-emerald-400 mb-3"></i>
+                    <div class="text-3xl font-extrabold mb-1">5+</div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-slate-500">Professional Certs</div>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-800 text-center hover:border-sky-500/40 transition-all">
+                    <i class="fa-solid fa-shield-halved text-3xl text-amber-400 mb-3"></i>
+                    <div class="text-3xl font-extrabold mb-1">Brown</div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-slate-500">Kung-Fu Belt</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SKILLS METER SECTION -->
+    <section id="skills" class="py-28 px-6 bg-slate-900/30 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold tracking-tight mb-4 inline-block relative">
+                    Core Technical Arsenal
+                    <span class="absolute bottom-0 left-1/4 right-1/4 h-[3px] bg-sky-500 rounded-full"></span>
+                </h2>
+                <p class="text-slate-400">Quantifiable mastery over languages, programmatic computational structures, and embedded engineering stacks.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Skill 1 -->
+                <div class="p-6 rounded-2xl bg-slate-800/40 border border-slate-800/80 glass">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-3"><i class="fa-brands fa-python text-2xl text-yellow-400"></i> <span class="font-bold text-lg">Python Programming</span></div>
+                        <span class="text-sky-400 font-bold">90%</span>
                     </div>
-                    <p class="card-desc">Founded and built a dedicated interactive web platform hosted on GitHub showcasing modern artificial intelligence application workflows and tooling interfaces.</p>
-                    <div class="card-links">
-                        <a href="#" target="_blank">Live Website →</a>
+                    <div class="w-full bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-sky-400 to-blue-500 h-full rounded-full" style="width: 90%"></div></div>
+                </div>
+                <!-- Skill 2 -->
+                <div class="p-6 rounded-2xl bg-slate-800/40 border border-slate-800/80 glass">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-microchip text-2xl text-red-400"></i> <span class="font-bold text-lg">IoT & Embedded Systems (ESP32)</span></div>
+                        <span class="text-sky-400 font-bold">85%</span>
+                    </div>
+                    <div class="w-full bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-sky-400 to-blue-500 h-full rounded-full" style="width: 85%"></div></div>
+                </div>
+                <!-- Skill 3 -->
+                <div class="p-6 rounded-2xl bg-slate-800/40 border border-slate-800/80 glass">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-database text-2xl text-purple-400"></i> <span class="font-bold text-lg">Data Analysis (Pandas, NumPy)</span></div>
+                        <span class="text-sky-400 font-bold">80%</span>
+                    </div>
+                    <div class="w-full bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-sky-400 to-blue-500 h-full rounded-full" style="width: 80%"></div></div>
+                </div>
+                <!-- Skill 4 -->
+                <div class="p-6 rounded-2xl bg-slate-800/40 border border-slate-800/80 glass">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-code text-2xl text-blue-400"></i> <span class="font-bold text-lg">C / C++ Infrastructure Logic</span></div>
+                        <span class="text-sky-400 font-bold">85%</span>
+                    </div>
+                    <div class="w-full bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-sky-400 to-blue-500 h-full rounded-full" style="width: 85%"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. GLASSMORPHISM PROJECTS SECTION -->
+    <section id="projects" class="py-28 px-6 max-w-7xl mx-auto border-t border-slate-800/60">
+        <div class="text-center max-w-3xl mx-auto mb-20">
+            <h2 class="text-3xl font-bold tracking-tight mb-4 inline-block relative">
+                Featured Engineering Initiatives
+                <span class="absolute bottom-0 left-1/4 right-1/4 h-[3px] bg-sky-500 rounded-full"></span>
+            </h2>
+            <p class="text-slate-400">Production-ready structural models and functional code deployments.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Project Card 1 -->
+            <div class="group bg-slate-800/40 border border-slate-800 hover:border-sky-500/50 rounded-2xl overflow-hidden glass transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(56,189,248,0.15)] flex flex-col">
+                <div class="h-48 overflow-hidden bg-slate-900 relative">
+                    <img src="pipeline.jpg" alt="Smart Pipeline" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs font-bold text-sky-400 tracking-wider uppercase mb-1">"Where Protection Meets Precision"</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Smart Pipeline Monitoring</h3>
+                    <p class="text-sm text-slate-400 mb-6 flex-grow">An integrated IoT automation array designed using precise microflow processing tracking and ESP32 nodes to track distribution line breaks dynamically.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-900 font-semibold text-slate-400">ESP32</span>
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-900 font-semibold text-slate-400">IoT Architecture</span>
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-900 font-semibold text-slate-400">Sensors</span>
+                    </div>
+                    <div class="flex gap-4 mt-auto">
+                        <a href="#" class="flex-1 text-center py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-sky-400 text-sm font-bold transition-all"><i class="fa-brands fa-github mr-2"></i> Code Base</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 3 -->
-            <div class="card">
-                <!-- Replace 'expense.jpg' with your image url -->
-                <img class="card-banner" src="expense.jpg" alt="Expense App">
-                <div class="card-content">
-                    <div class="card-header">
-                        <div class="card-title">Personal Expense Management System</div>
-                        <div class="card-meta">C, File I/O, Data Structs</div>
+            <!-- Project Card 2 -->
+            <div class="group bg-slate-800/40 border border-slate-800 hover:border-sky-500/50 rounded-2xl overflow-hidden glass transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(56,189,248,0.15)] flex flex-col">
+                <div class="h-48 overflow-hidden bg-slate-900 relative">
+                    <img src="ai-web.jpg" alt="JOREX AI" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs font-bold text-indigo-400 tracking-wider uppercase mb-1">AI Tool Framework</div>
+                    <h3 class="text-xl font-bold text-white mb-2">JOREX AI</h3>
+                    <p class="text-sm text-slate-400 mb-6 flex-grow">Dedicated responsive operational platform engineered explicitly to highlight bespoke automated predictive AI widgets and interactive workflows.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-900 font-semibold text-slate-400">Python AI</span>
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-900 font-semibold text-slate-400">GitHub Pages</span>
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-900 font-semibold text-slate-400">Web Interface</span>
                     </div>
-                    <p class="card-desc">A lightweight, robust command-line application built in C to handle daily personal finance tracking, budget logging, and structural data storage using local file system I/O handling.</p>
-                    <div class="card-links">
-                        <a href="#" target="_blank">View Code →</a>
+                    <div class="flex gap-4 mt-auto">
+                        <a href="https://joneshbenadit29it-ui.github.io/joneshbensafit-portfolio/" class="flex-1 text-center py-2 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(56,189,248,0.3)]">Live Site <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-xs"></i></a>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Certifications -->
-        <section id="certifications">
-            <h2>Certifications</h2>
-            <ul class="bullet-list">
-                <li class="list-item"><span>Microsoft Certified: Azure Fundamentals (AZ-900)</span></li>
-                <li class="list-item"><span>Automated Web Testing with Playwright & TypeScript</span></li>
-                <li class="list-item"><span>IBM SkillsBuild Professional Certifications</span></li>
-                <li class="list-item"><span>Google Vids Productivity Specialization</span></li>
-            </ul>
-        </section>
+            <!-- Project Card 3 -->
+            <div class="group bg-slate-800/40 border border-slate-800 hover:border-sky-500/50 rounded-2xl overflow-hidden glass transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(56,189,248,0.15)] flex flex-col">
+                <div class="h-48 overflow-hidden bg-slate-900 relative">
+                    <img src="expense.jpg" alt="Expense Management" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs font-bold text-emerald-400 tracking-wider uppercase mb-1">Financial Precision</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Expense Tracker System</h3>
+                    <p class="text-sm text-slate-400 mb-6 flex-grow">A secure, production-grade console application built completely in standard procedural C logic to catalogue, manage, and audit daily operational accounting.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-900 font-semibold text-slate-400">C Language</span>
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-900 font-semibold text-slate-400">Data Arrays</span>
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-900 font-semibold text-slate-400">File Handling</span>
+                    </div>
+                    <div class="flex gap-4 mt-auto">
+                        <a href="#" class="flex-1 text-center py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-sky-400 text-sm font-bold transition-all"><i class="fa-brands fa-github mr-2"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Languages & Strengths -->
-        <section id="additional">
-            <h2>Languages & Core Profile</h2>
-            <ul class="bullet-list">
-                <li class="list-item"><span><strong>Tamil:</strong> Native Fluency</span></li>
-                <li class="list-item"><span><strong>English:</strong> Professional Proficiency</span></li>
-                <li class="list-item"><span><strong>Core Competencies:</strong> Embedded Systems Logic, Algorithmic Problem Solving, Technical Documentation</span></li>
-            </ul>
-        </section>
-    </div>
+        </div>
+    </section>
 
+    <!-- 6. HIGH-TECH TIMELINE / EXPERIENCE SECTION -->
+    <section id="experience" class="py-28 px-6 bg-slate-900/20 border-t border-slate-800/60">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold tracking-tight mb-4 inline-block relative">
+                    Certifications & Milestones
+                    <span class="absolute bottom-0 left-1/4 right-1/4 h-[3px] bg-sky-500 rounded-full"></span>
+                </h2>
+                <p class="text-slate-400">Validated benchmarks of continuous professional engineering upskilling.</p>
+            </div>
+
+            <!-- Vertically Styled Timeline Array -->
+            <div class="relative border-l-2 border-slate-800 ml-4 md:ml-32 space-y-12">
+                <!-- Cert 1 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#0f172a] border-4 border-sky-400 transition-transform group-hover:scale-125 duration-300"></div>
+                    <div class="absolute left-[-110px] top-1 text-sm font-bold text-slate-500 hidden md:block text-right w-20">Cloud Tech</div>
+                    <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-800/80 glass">
+                        <h4 class="font-bold text-lg text-white">Azure Fundamentals (AZ-900)</h4>
+                        <p class="text-sm text-sky-400 font-medium">Microsoft Verified Certification</p>
+                    </div>
+                </div>
+                <!-- Cert 2 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#0f172a] border-4 border-indigo-400 transition-transform group-hover:scale-125 duration-300"></div>
+                    <div class="absolute left-[-110px] top-1 text-sm font-bold text-slate-500 hidden md:block text-right w-20">QA Automation</div>
+                    <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-800/80 glass">
+                        <h4 class="font-bold text-lg text-white">Playwright End-to-End Automation</h4>
+                        <p class="text-sm text-indigo-400 font-medium">TypeScript-Based Web Automation Engineering</p>
+                    </div>
+                </div>
+                <!-- Cert 3 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#0f172a] border-4 border-emerald-400 transition-transform group-hover:scale-125 duration-300"></div>
+                    <div class="absolute left-[-110px] top-1 text-sm font-bold text-slate-500 hidden md:block text-right w-20">Industry Core</div>
+                    <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-800/80 glass">
+                        <h4 class="font-bold text-lg text-white">IBM SkillsBuild Credentials</h4>
+                        <p class="text-sm text-emerald-400 font-medium">Core Enterprise Professional Competencies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. GITHUB STATS EMBED -->
+    <section class="py-24 px-6 max-w-7xl mx-auto border-t border-slate-800/60 text-center">
+        <h3 class="text-2xl font-bold mb-8 text-white"><i class="fa-brands fa-github text-sky-400 mr-2"></i> Real-time Repository Performance</h3>
+        <div class="inline-flex flex-wrap justify-center gap-6 p-4 bg-slate-900/50 rounded-2xl border border-slate-800 glass">
+            <!-- Dynamically Loaded Markdown Stats Cards via GitHub API Renderer wrapper -->
+            <img src="https://github-readme-stats.vercel.app/api?username=joneshbenadit29it-ui&show_icons=true&theme=tokyonight&hide_border=true" alt="GitHub Stats" class="h-44 object-contain">
+            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=joneshbenadit29it-ui&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages" class="h-44 object-contain">
+        </div>
+    </section>
+
+    <!-- 8. CONTACT SECTION WITH SOCIAL INTERACTIVE LAYER -->
+    <section id="contact" class="py-28 px-6 max-w-5xl mx-auto border-t border-slate-800/60">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2 class="text-3xl font-bold tracking-tight mb-4 inline-block relative">
+                Initialize Connection
+                <span class="absolute bottom-0 left-1/4 right-1/4 h-[3px] bg-sky-500 rounded-full"></span>
+            </h2>
+            <p class="text-slate-400">Let's build innovative, secure architecture together.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+            <div class="md:col-span-5 space-y-6">
+                <h3 class="text-xl font-bold text-white">Direct Coordinates</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Drop a secure digital communication thread here or connect via primary network handles.</p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 text-slate-300"><i class="fa-solid fa-envelope text-sky-400 text-lg w-5"></i> <span>joneshbenadit29it@gmail.com</span></div>
+                    <div class="flex items-center gap-4 text-slate-300"><i class="fa-solid fa-location-dot text-sky-400 text-lg w-5"></i> <span>Chennai, Tamil Nadu, India</span></div>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <a href="https://github.com/joneshbenadit29it-ui" class="w-11 h-11 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 flex items-center justify-center hover:border-sky-400 hover:text-sky-400 transition-all transform hover:-translate-y-1"><i class="fa-brands fa-github text-xl"></i></a>
+                    <a href="#" class="w-11 h-11 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 flex items-center justify-center hover:border-sky-400 hover:text-sky-400 transition-all transform hover:-translate-y-1"><i class="fa-brands fa-linkedin-in text-xl"></i></a>
+                </div>
+            </div>
+
+            <!-- Form Wrapper Layer -->
+            <div class="md:col-span-7 bg-slate-800/40 p-8 rounded-2xl border border-slate-800 glass">
+                <form class="space-y-5" onsubmit="event.preventDefault(); alert('Message simulation initialized!');">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div class="space-y-2"><label class="text-xs font-bold text-slate-400 tracking-wider uppercase">Your Name</label><input type="text" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-400 transition-all" placeholder="John Doe"></div>
+                        <div class="space-y-2"><label class="text-xs font-bold text-slate-400 tracking-wider uppercase">Email Coordinates</label><input type="email" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-400 transition-all" placeholder="john@example.com"></div>
+                    </div>
+                    <div class="space-y-2"><label class="text-xs font-bold text-slate-400 tracking-wider uppercase">Transmission Content</label><textarea rows="4" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-400 transition-all" placeholder="Write your message here..."></textarea></div>
+                    <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 font-bold text-white transition-all transform hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(56,189,248,0.4)]">Send Encrypted Thread</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FOOTER LAYER -->
+    <footer class="py-12 border-t border-slate-800/60 text-center text-sm text-slate-500">
+        <p>&copy; 2026 Jonesh Benadit J. All Rights Reserved.</p>
+        <p class="mt-2 flex items-center justify-center gap-1.5">Made with <i class="fa-solid fa-heart text-red-500 animate-pulse"></i> via GitHub Pages.</p>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS LOGIC COMPONENT LAYER -->
+    <script>
+        // 1. Dynamic Interactive Typing Loop
+        const words = ["Full Stack Developer.", "Python Programmer.", "AI Technology Enthusiast.", "IoT System Creator."];
+        let i = 0, timer;
+
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typingText').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return false;
+                }
+                timer = setTimeout(loopTyping, 100);
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typingText').innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) i++;
+                    else i = 0;
+                    setTimeout(typingEffect, 500);
+                    return false;
+                }
+                timer = setTimeout(loopDeleting, 60);
+            };
+            loopDeleting();
+        }
+        typingEffect();
+
+        // 2. Hardware-Accelerated Custom Cursor Glow Tracking
+        const mouseGlow = document.getElementById('mouseGlow');
+        document.addEventListener('mousemove', (e) => {
+            mouseGlow.style.left = e.clientX + 'px';
+            mouseGlow.style.top = e.clientY + 'px';
+        });
+
+        // 3. Complete Dark/Light Theme Switching Engine Mechanics
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                document.body.style.backgroundColor = '#f8fafc';
+            } else {
+                document.documentElement.classList.remove('light');
+                document.documentElement.classList.add('dark');
+                document.body.style.backgroundColor = '#0f172a';
+            }
+        });
+    </script>
 </body>
 </html>
