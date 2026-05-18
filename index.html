@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jonesh Benadit J. | Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --text-bright: #f0f6fc;
+            --accent-color: #58a6ff;
+            --border-color: #30363d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Profile Header Header Layout */
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 600px) {
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .header-text { flex: 1; }
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            object-fit: cover;
+            background-color: var(--card-bg);
+        }
+
+        h1 {
+            color: var(--text-bright);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .links {
+            margin-top: 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-bottom: 1px dashed var(--text-color);
+        }
+
+        .links a:hover {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: var(--text-bright);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 0.75rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category h3 {
+            color: var(--text-bright);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        /* Cards with Project Banner Support */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-banner {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+            background-color: #1f242c;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            color: var(--text-bright);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-family: monospace;
+        }
+
+        .card-desc {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .card-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .card-links a:hover {
+            text-decoration: underline;
+        }
+
+        .bullet-list {
+            list-style: none;
+        }
+
+        .list-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .card-header { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header with Avatar Slot -->
+        <header>
+            <div class="header-text">
+                <h1>Jonesh Benadit J.</h1>
+                <div class="subtitle">Information Technology Student & Developer</div>
+                <p>Passionate about building smart embedded systems, precision IoT architectures, and data-driven software solutions.</p>
+                <div class="links">
+                    <a href="https://linkedin.com/in/jonesh-benadit-j-837b98378" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/joneshbenadit29it-ui" target="_blank">GitHub</a>
+                    <a href="mailto:joneshbenadit@gmail.com">Personal Email</a>
+                    <a href="mailto:joneshbenadit.29it@licet.ac.in">Institutional Email</a>
+                </div>
+            </div>
+            <!-- Replace 'avatar.jpg' with your photo link later -->
+            <img class="profile-img" src="avatar.jpg" alt="Jonesh Benadit J.">
+        </header>
+
+        <!-- Education -->
+        <section id="education">
+            <h2>Education</h2>
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-title">Loyola-ICAM College of Engineering and Technology (LICET)</div>
+                        <div class="card-meta">2025 — 2029 (Expected)</div>
+                    </div>
+                    <div class="subtitle" style="font-size: 1rem; margin-bottom: 0.5rem;">B.Tech in Information Technology</div>
+                    <p class="card-desc">Focusing on modern computing principles, foundational software architectures, database logic, and hardware-software integration methodologies.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">C</span>
+                        <span class="tag">C++</span>
+                        <span class="tag">TypeScript</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Libraries & Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Pandas</span>
+                        <span class="tag">NumPy</span>
+                        <span class="tag">Matplotlib</span>
+                        <span class="tag">Playwright</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Hardware</h3>
+                    <div class="skill-tags">
+                        <span class="tag">ESP32 & Sensors</span>
+                        <span class="tag">Git & GitHub</span>
+                        <span class="tag">Azure Fundamentals</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects with Image Banners -->
+        <section id="projects">
+            <h2>Featured Projects</h2>
+
+            <!-- Project 1 -->
+            <div class="card">
+                <!-- Replace 'pipeline.jpg' with your image url -->
+                <img class="card-banner" src="pipeline.jpg" alt="Smart Pipeline">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-title">Smart Pipeline Monitoring System</div>
+                        <div class="card-meta">ESP32, Flow Sensors, IoT Architecture</div>
+                    </div>
+                    <p class="card-desc">"Where Protection Meets Precision." Developed a smart pipeline grid using an ESP32 micro-controller and precise flow sensors to track liquid transit, calculate flow differentials, and instantly alert users to pipe leaks and resource waste.</p>
+                    <div class="card-links">
+                        <a href="#" target="_blank">View Repository →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="card">
+                <!-- Replace 'ai-web.jpg' with your image url -->
+                <img class="card-banner" src="ai-web.jpg" alt="JOREX AI">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-title">JOREX AI</div>
+                        <div class="card-meta">AI Integration, Web Development, GitHub Pages</div>
+                    </div>
+                    <p class="card-desc">Founded and built a dedicated interactive web platform hosted on GitHub showcasing modern artificial intelligence application workflows and tooling interfaces.</p>
+                    <div class="card-links">
+                        <a href="#" target="_blank">Live Website →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="card">
+                <!-- Replace 'expense.jpg' with your image url -->
+                <img class="card-banner" src="expense.jpg" alt="Expense App">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-title">Personal Expense Management System</div>
+                        <div class="card-meta">C, File I/O, Data Structs</div>
+                    </div>
+                    <p class="card-desc">A lightweight, robust command-line application built in C to handle daily personal finance tracking, budget logging, and structural data storage using local file system I/O handling.</p>
+                    <div class="card-links">
+                        <a href="#" target="_blank">View Code →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section id="certifications">
+            <h2>Certifications</h2>
+            <ul class="bullet-list">
+                <li class="list-item"><span>Microsoft Certified: Azure Fundamentals (AZ-900)</span></li>
+                <li class="list-item"><span>Automated Web Testing with Playwright & TypeScript</span></li>
+                <li class="list-item"><span>IBM SkillsBuild Professional Certifications</span></li>
+                <li class="list-item"><span>Google Vids Productivity Specialization</span></li>
+            </ul>
+        </section>
+
+        <!-- Languages & Strengths -->
+        <section id="additional">
+            <h2>Languages & Core Profile</h2>
+            <ul class="bullet-list">
+                <li class="list-item"><span><strong>Tamil:</strong> Native Fluency</span></li>
+                <li class="list-item"><span><strong>English:</strong> Professional Proficiency</span></li>
+                <li class="list-item"><span><strong>Core Competencies:</strong> Embedded Systems Logic, Algorithmic Problem Solving, Technical Documentation</span></li>
+            </ul>
+        </section>
+    </div>
+
+</body>
+</html>
